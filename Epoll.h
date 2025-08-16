@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <vector>
+#include "Channel.h"
+
+class Channel;
 
 class Epoll
 {
@@ -16,5 +20,7 @@ public:
   Epoll();
   ~Epoll();
 
-
+  void updatechannel(Channel *ch);
+  void removechannel(Channel *ch);
+  std::vector<Channel*> loop(int timeout=-1);
 };
