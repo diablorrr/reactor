@@ -4,6 +4,8 @@
 #include <netinet/tcp.h>
 #include "InetAddress.h"
 
+int createnoblocking();
+
 class Socket
 {
 private:

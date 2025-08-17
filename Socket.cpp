@@ -3,6 +3,15 @@
 #include <cstdint>
 #include <sys/socket.h>
 
+int createnoblocking() {
+  int listenfd = socket(AF_INET, SOCK_STREAM|SOCK_NONBLOCK, IPPROTO_TCP);
+  if (listenfd < 0) {
+    printf("%s:%s:%d listen socket create error:%d\n", __FILE__, __FUNCTION__, __LINE__, errno);
+    exit(-1);
+  }
+  return listenfd;
+}
+
 Socket::Socket(int fd):m_fd(fd){}
 
 Socket::~Socket() {
