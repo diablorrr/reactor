@@ -32,8 +32,10 @@ public:
   void enablewriting();
   void disablewriting();
   void disableall();
+  void useet();
 
   void handleevent();
+  void remove();
 
   void setreadcallback(std::function<void()> fn);
   void setwritecallback(std::function<void()> fn);

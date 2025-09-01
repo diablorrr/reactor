@@ -99,3 +99,14 @@ void Channel::handleevent() {
     m_errorcallback();
   }
 }
+
+
+void Channel::useet() {
+  m_events |= EPOLLET;
+}
+
+
+void Channel::remove() {
+  disableall();
+  m_loop->removechannel(this);
+}
