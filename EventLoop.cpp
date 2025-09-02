@@ -3,6 +3,7 @@
 #include <cstring>
 #include <ctime>
 #include <functional>
+#include <mutex>
 #include <sys/time.h>
 #include <unistd.h>
 #include <sys/eventfd.h>
@@ -145,4 +146,10 @@ void EventLoop::handletimer() {
       }
     }
   }
+}
+
+
+void EventLoop::newconnection(spConnection conn) {
+  std::lock_guard<std::mutex> gd(m_mmutex);
+  m_conns[conn->fd()] = conn;
 }

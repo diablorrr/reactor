@@ -19,7 +19,7 @@ private:
 
   std::unique_ptr<Epoll> m_ep;
   std::map<int, spConnection> m_conns;            // Connection的fd 和 对应的Connection对象
-  std::queue<std::function<void()>> m_taskqueue;
+  std::queue<std::function<void()>> m_taskqueue;  // 不处理业务逻辑
 
   pid_t m_threadid;
 

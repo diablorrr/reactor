@@ -54,7 +54,6 @@ void Connection::onmessage() {
         m_onmessagecallback(shared_from_this(), message);
       }
       break;
-
     } else if (nread == 0) {
       closecallback();
       break;
@@ -113,12 +112,22 @@ bool Connection::timeout(time_t now, int val) {
   return now - m_lasttime.toint() > val;
 }
 
-// TODO
+// 发送数据，不管在任何线程，都是调用这个函数发送数据
 void Connection::send(const char* data, size_t size) {
   if (m_disconnect == true) {
     printf("客户端连接已断开，send()直接返回。\n");
     return;
   }
 
-  if (m_loop->isinloopthread())
+  if (m_loop->isinloopthread()) { // 若是 IO线程（事件循环线程）
+    sendinloop(data, size);
+  } else {
+    m_loop->queueinloop(std::bind(&Connection::sendinloop, this, data, size));
+  }
+}
+
+
+void Connection::sendinloop(const char* data, size_t size) {
+  m_outputbuffer.appendwithsep(data, size);
+  m_clientchannel->enablewriting();
 }

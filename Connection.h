@@ -16,8 +16,10 @@ private:
   EventLoop* m_loop;
   std::unique_ptr<Socket> m_clientsock;
   std::unique_ptr<Channel> m_clientchannel;
+
   Buffer m_inputbuffer;
   Buffer m_outputbuffer;
+
   std::atomic_bool m_disconnect;
 
   std::function<void(spConnection)> m_closecallback;

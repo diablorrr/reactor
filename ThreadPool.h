@@ -15,7 +15,7 @@ class ThreadPool {
 private:
   std::vector<std::thread> m_threads;
   std::queue<std::function<void()>> m_taskqueue;
-  const std::string m_threadtype;  // IO、WORKS
+  const std::string m_threadtype;  // IO(事件循环线程)、WORKS
   std::atomic<bool> m_stop;
   std::mutex m_mutex;
   std::condition_variable m_condition;
