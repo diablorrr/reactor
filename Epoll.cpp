@@ -38,9 +38,11 @@ void Epoll::updatechannel(Channel* ch) {
 
 
 void Epoll::removechannel(Channel* ch) {
-  if (epoll_ctl(m_epollfd, EPOLL_CTL_DEL, ch->fd(), 0) == -1) {
-    perror("epoll_ctl() failed.\n");
-    exit(-1);
+  if (ch->inpoll()) {
+    if (epoll_ctl(m_epollfd, EPOLL_CTL_DEL, ch->fd(), 0) == -1) {
+      perror("epoll_ctl() failed.\n");
+      exit(-1);
+    }
   }
 }
 

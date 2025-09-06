@@ -23,6 +23,7 @@ void Acceptor::newconnection() {
   InetAddress clientaddr;
 
   std::unique_ptr<Socket> clientsock(new Socket(m_servsock.accept(clientaddr)));
+
   clientsock->setipport(clientaddr.ip(), clientaddr.port());
 
   m_newconnectioncb(std::move(clientsock));

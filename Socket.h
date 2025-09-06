@@ -9,7 +9,7 @@ int createnoblocking();
 class Socket
 {
 private:
-  int m_fd;
+  const int m_fd;
   std::string m_ip;
   uint16_t m_port;
 

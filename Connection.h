@@ -8,7 +8,8 @@
 #include "Timestamp.h"
 
 class Connection;
-
+class EventLoop;
+class Channel;
 using spConnection = std::shared_ptr<Connection>;
 
 class Connection : public std::enable_shared_from_this<Connection> {

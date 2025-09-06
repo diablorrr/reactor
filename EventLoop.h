@@ -7,8 +7,12 @@
 #include <map>
 #include <queue>
 #include "Epoll.h"
+#include "Channel.h"
+#include "Connection.h"
 
 class Connection;
+class Channel;
+class Epoll;
 using spConnection = std::shared_ptr<Connection>;
 
 class EventLoop {

@@ -11,8 +11,8 @@ private:
 public:
   InetAddress(const std::string& ip, uint16_t port);
   InetAddress(const sockaddr_in addr);
-  InetAddress() = default;
-  ~InetAddress() = default;
+  InetAddress();
+  ~InetAddress();
 
   const char *ip() const;
   uint16_t port() const;

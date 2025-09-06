@@ -7,16 +7,16 @@ ThreadPool::ThreadPool(size_t threadnum, const std::string& threadtype):m_stop(f
       while(m_stop == false) {
         std::function<void()> task;
         {
-          std::unique_lock<std::mutex> lock(m_mutex);
+          std::unique_lock<std::mutex> lock(this->m_mutex);
 
           m_condition.wait(lock, [this]{
-            return m_stop == true || m_taskqueue.empty() == false;
+            return this->m_stop == true || this->m_taskqueue.empty() == false;
           });
 
-          if (m_stop == true && m_taskqueue.empty() == true) return;
+          if (this->m_stop == true && this->m_taskqueue.empty() == true) return;
 
-          task = std::move(m_taskqueue.front());
-          m_taskqueue.pop();
+          task = std::move(this->m_taskqueue.front());
+          this->m_taskqueue.pop();
         }
         task();
       }

@@ -89,3 +89,6 @@ void Socket::setkeepalive(bool on)
     int optval = on ? 1 : 0;
     ::setsockopt(m_fd, SOL_SOCKET, SO_KEEPALIVE, &optval, sizeof(optval));
 }
+
+
+

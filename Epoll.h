@@ -13,7 +13,7 @@ class Epoll
 {
 private:
   int m_epollfd = -1;
-  static constexpr int MaxEvents=100;
+  static const int MaxEvents=100;
   epoll_event m_events[MaxEvents];
 
 public:

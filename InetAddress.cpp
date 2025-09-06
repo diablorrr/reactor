@@ -1,8 +1,16 @@
 #include "InetAddress.h"
 
+InetAddress::InetAddress() {
+
+}
+
+InetAddress::~InetAddress() {
+
+}
 
 // 要发送数据，转为网络序
 InetAddress::InetAddress(const std::string& ip, uint16_t port) {
+  m_addr.sin_family = AF_INET;
   m_addr.sin_addr.s_addr = inet_addr(ip.c_str());
   m_addr.sin_port = htons(port);
 }
